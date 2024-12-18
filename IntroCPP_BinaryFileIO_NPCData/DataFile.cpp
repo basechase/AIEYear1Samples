@@ -1,5 +1,6 @@
 #include "DataFile.h"
 #include <fstream>
+
 using namespace std;
 
 DataFile::DataFile()
@@ -44,7 +45,7 @@ void DataFile::Save(string filename)
 		int imageSize = sizeof(Color) * records[i]->image.width * records[i]->image.height;
 		int nameSize = records[i]->name.length();
 		int ageSize = sizeof(int);
-
+		
 		outfile.write((char*)&records[i]->image.width, sizeof(int));
 		outfile.write((char*)&records[i]->image.height, sizeof(int));
 		
@@ -98,6 +99,7 @@ void DataFile::Load(string filename)
 		r->age = age;
 		records.push_back(r);
 
+		
 		delete [] imgdata;
 		delete [] name;
 	}

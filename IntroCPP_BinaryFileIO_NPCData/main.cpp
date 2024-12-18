@@ -50,10 +50,11 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-
+        //clamp/limit values so they cant step out of the index
         if (IsKeyPressed(KEY_LEFT))
         {
             currentRecordIdx--;
+            //limit values
             if (currentRecordIdx < 0)
             {
                 currentRecordIdx = 0;
@@ -64,8 +65,9 @@ int main(int argc, char* argv[])
 
         if (IsKeyPressed(KEY_RIGHT))
         {
-            
+           
             currentRecordIdx++;
+            //limit values
             if (currentRecordIdx >4)
             {
                 currentRecordIdx = 4;
@@ -84,7 +86,7 @@ int main(int argc, char* argv[])
         DrawTexture(recordTexture, 300, 50, WHITE);
 
         DrawText("NAME", 10, 50, 20, LIGHTGRAY);
-        DrawText(currentRecord->name.c_str(), 10, 80, 20, LIGHTGRAY);
+        DrawText((currentRecord->name).c_str(), 10, 80, 20, LIGHTGRAY);
 
         DrawText("AGE", 10, 120, 20, LIGHTGRAY);
         DrawText(to_string(currentRecord->age).c_str(), 10, 150, 20, LIGHTGRAY);
