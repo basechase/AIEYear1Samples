@@ -24,6 +24,7 @@ void DataFile::AddRecord(string imageFilename, string name, int age)
 
 	records.push_back(r);
 	recordCount++;
+	
 }
 
 DataFile::Record* DataFile::GetRecord(int index)
@@ -43,7 +44,7 @@ void DataFile::Save(string filename)
 		Color* imgdata = GetImageData(records[i]->image);
 				
 		int imageSize = sizeof(Color) * records[i]->image.width * records[i]->image.height;
-		int nameSize = records[i]->name.length();
+		int nameSize = records[i]->name.size();
 		int ageSize = sizeof(int);
 		
 		outfile.write((char*)&records[i]->image.width, sizeof(int));
@@ -82,6 +83,7 @@ void DataFile::Load(string filename)
 
 		infile.read((char*)&nameSize, sizeof(int));
 		infile.read((char*)&ageSize, sizeof(int));
+		
 
 		char* imgdata = new char[imageSize];
 		infile.read(imgdata, imageSize);
@@ -89,6 +91,8 @@ void DataFile::Load(string filename)
 		Image img = LoadImageEx((Color*)imgdata, width, height);
 		char* name = new char[nameSize];
 		int age = 0;
+
+
 				
 		infile.read((char*)name, nameSize);
 		infile.read((char*)&age, ageSize);
