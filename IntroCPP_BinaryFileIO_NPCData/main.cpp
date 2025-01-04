@@ -85,16 +85,16 @@ int main(int argc, char* argv[])
         ClearBackground(RAYWHITE);
 
         DrawTexture(recordTexture, 300, 50, WHITE);
-        size_t end = currentRecord->name.find('ý');
+        int end = currentRecord->name.find('ý');
         std::cout << end << std::endl;
-        
+        // i figured this out at four in the morning on a saturday
 
-
+        string otherstring = currentRecord->name.substr(0, end);
 
         
                                         
         DrawText("NAME", 10, 50, 20, LIGHTGRAY);
-        DrawText(currentRecord->name.c_str(), 10, 80, 20, LIGHTGRAY);
+        DrawText(otherstring.c_str(), 10, 80, 20, LIGHTGRAY);
         
         DrawText("AGE", 10, 120, 20, LIGHTGRAY);
         DrawText(to_string(currentRecord->age).c_str(), 10, 150, 20, LIGHTGRAY);
