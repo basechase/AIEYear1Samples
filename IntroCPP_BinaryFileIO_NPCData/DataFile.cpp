@@ -44,11 +44,14 @@ void DataFile::Save(string filename)
 		Color* imgdata = GetImageData(records[i]->image);
 				
 		int imageSize = sizeof(Color) * records[i]->image.width * records[i]->image.height;
-		int nameSize = records[i]->name.size();
+		
+
+		int nameSize = 0;
 		int ageSize = sizeof(int);
 		
 		outfile.write((char*)&records[i]->image.width, sizeof(int));
 		outfile.write((char*)&records[i]->image.height, sizeof(int));
+		outfile.write(records[i]->name.c_str(), nameSize);
 		
 		outfile.write((char*)&nameSize, sizeof(int));
 		outfile.write((char*)&ageSize, sizeof(int));
