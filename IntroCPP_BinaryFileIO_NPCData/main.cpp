@@ -95,7 +95,10 @@ int main(int argc, char* argv[])
                                         
         DrawText("NAME", 10, 50, 20, LIGHTGRAY);
         DrawText(otherstring.c_str(), 10, 80, 20, LIGHTGRAY);
-        
+        std::cout << &currentRecord->name << std::endl;
+
+        //maybe goto memory address then parse through x amount of characters??????
+
         DrawText("AGE", 10, 120, 20, LIGHTGRAY);
         DrawText(to_string(currentRecord->age).c_str(), 10, 150, 20, LIGHTGRAY);
        
