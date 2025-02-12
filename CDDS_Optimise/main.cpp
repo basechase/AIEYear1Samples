@@ -24,9 +24,8 @@
 #include <random>
 #include <time.h>
 #include "Critter.h"
-#include "List.h"
 #include <iostream>
-
+#include "ObjectPool.h"
 
 int main(int argc, char* argv[])
 {
