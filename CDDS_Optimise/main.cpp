@@ -44,7 +44,9 @@ int main(int argc, char* argv[])
 
    
     Critter critters[50]; 
-    List <critters> crits;
+    List <Critter> crits_Active = {};
+    List <Critter> crits_InActive = {};
+    
     // create some critters
     const int CRITTER_COUNT = 50;
     const int MAX_VELOCITY = 80;
@@ -57,6 +59,12 @@ int main(int argc, char* argv[])
         velocity = Vector2Scale(Vector2Normalize(velocity), MAX_VELOCITY);
 
         // create a critter in a random location
+
+        /*
+        crits.Active
+        
+        
+        */
         critters[i].Init(
             { (float)(5+rand() % (screenWidth-10)), (float)(5+(rand() % screenHeight-10)) },
             velocity,
