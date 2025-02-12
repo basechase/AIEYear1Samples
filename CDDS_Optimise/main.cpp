@@ -24,6 +24,9 @@
 #include <random>
 #include <time.h>
 #include "Critter.h"
+#include "List.h"
+#include <iostream>
+
 
 int main(int argc, char* argv[])
 {
@@ -39,9 +42,9 @@ int main(int argc, char* argv[])
 
     srand(time(NULL));
 
-
+   
     Critter critters[50]; 
-
+    List <critters> crits;
     // create some critters
     const int CRITTER_COUNT = 50;
     const int MAX_VELOCITY = 80;
@@ -98,13 +101,13 @@ int main(int argc, char* argv[])
             destroyer.SetY(screenHeight);
             destroyer.SetVelocity(Vector2{ destroyer.GetVelocity().x, -destroyer.GetVelocity().y });
         }
-
+        
         // update the critters
         // (dirty flags will be cleared during update)
         for (int i = 0; i < CRITTER_COUNT; i++)
         {
             critters[i].Update(delta);
-
+            
             // check each critter against screen bounds
             if (critters[i].GetX() < 0) {
                 critters[i].SetX(0);
