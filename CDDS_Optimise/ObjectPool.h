@@ -14,6 +14,7 @@ public:
 	void Enable();
 	void Disable();
 
+	void Release();
 
 	void RemoveObject(T* value);
 
