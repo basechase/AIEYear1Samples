@@ -43,8 +43,7 @@ int main(int argc, char* argv[])
 
    
     Critter critters[50]; 
-    List <Critter> crits_Active = {};
-    List <Critter> crits_InActive = {};
+  
     
     // create some critters
     const int CRITTER_COUNT = 50;
@@ -140,6 +139,8 @@ int main(int argc, char* argv[])
             {
                 critters[i].Destroy();
                 // this would be the perfect time to put the critter into an object pool
+
+                //
             }
         }
                 
