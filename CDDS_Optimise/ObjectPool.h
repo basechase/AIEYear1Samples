@@ -6,20 +6,14 @@ template<typename T>
 class ObjectPool
 {
 public:
-	ObjectPool(int size);
-	~ObjectPool() = default;
+	ObjectPool<T>();
 
-	int CountActive();
-	int CountInactive();
-	void Enable();
-	void Disable();
-
-	void Release();
-
-	void RemoveObject(T* value);
-
-	List<T*> GetActive();
-	List<T*> GetInactive();
+	void Add(T& item, int index);
+	void Enable(int index);
+	void Disabke(T& item);
+	
+	List <T*>& getEnable() { return m_enabled; }
+	List <T*>& getDisable() { return m_disabled; }
 
 private:
 	//active and inactive list 
@@ -28,34 +22,3 @@ private:
 
 };
 
-template<typename T>
-inline ObjectPool<T>::ObjectPool(int size)
-{
-	
-}
-
-template<typename T>
-inline int ObjectPool<T>::CountActive()
-{
-	
-}
-
-
-
-template<typename T>
-inline void ObjectPool<T>::RemoveObject(T* value)
-{
-
-}
-
-template<typename T>
-inline List<T*> ObjectPool<T>::GetActive()
-{
-	return m_disabled;
-}
-
-template<typename T>
-inline List<T*> ObjectPool<T>::GetInactive()
-{
-	return m_disabled;
-}
