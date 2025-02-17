@@ -7,18 +7,43 @@ class ObjectPool
 {
 public:
 	ObjectPool<T>();
+	~ObjectPool<T>();
 
 	void Add(T& item, int index);
 	void Enable(int index);
-	void Disabke(T& item);
-	
-	List <T*>& getEnable() { return m_enabled; }
-	List <T*>& getDisable() { return m_disabled; }
+	void Disable(T& item);
 
-private:
+
+
 	//active and inactive list 
 	List<T*> m_enabled;
 	List<T*> m_disabled;
 
 };
 
+template<typename T>
+inline ObjectPool<T>::ObjectPool()
+{
+}
+
+template<typename T>
+inline ObjectPool<T>::~ObjectPool()
+{
+}
+
+template<typename T>
+inline void ObjectPool<T>::Add(T& item, int index)
+{
+	m_enabled.insert(&item, index);
+}
+
+template<typename T>
+inline void ObjectPool<T>::Enable(int index)
+{
+	
+}
+
+template<typename T>
+inline void ObjectPool<T>::Disable(T& item)
+{
+}
