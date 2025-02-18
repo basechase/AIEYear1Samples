@@ -7,7 +7,7 @@ class ObjectPool
 {
 public:
 	ObjectPool<T>();
-	~ObjectPool<T>();
+	~ObjectPool<T>() = default;
 
 	void Add(T& item, int index);
 	void Enable(int index);
@@ -41,9 +41,12 @@ template<typename T>
 inline void ObjectPool<T>::Enable(int index)
 {
 	
+	m_enabled.insert(m_disabled.popFront(), index);
 }
 
 template<typename T>
 inline void ObjectPool<T>::Disable(T& item)
 {
+	m_disabled.pushBack(&item);
+	m_enabled.remove(&item);
 }
