@@ -9,8 +9,8 @@ public:
 	~ObjectPool<T>();
 
 
-
-	void Release(T* element);
+	void Disable(T& element);
+	void Release(T& element);
 	void Clear();
 	T* Get();
 
@@ -42,11 +42,20 @@ inline ObjectPool<T>::~ObjectPool()
 	m_disabled.destroy();
 }
 
+
+
 template<typename T>
-inline void ObjectPool<T>::Release(T* element)
+inline void ObjectPool<T>::Disable(T& element)
 {
-	m_enabled.pushFront(element);
-	m_disabled.Remove(element);
+	m_disabled.pushFront(&element);
+	m_enabled.remove(&element);
+}
+
+template<typename T>
+inline void ObjectPool<T>::Release(T& element)
+{
+	m_enabled.pushFront(&element);
+	m_disabled.remove(&element);
 	
 }
 
