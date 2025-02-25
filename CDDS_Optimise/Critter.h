@@ -23,6 +23,8 @@ public:
 	void Destroy();
 	void Update(float dt);
 	void Draw();
+	void Reset();
+
 
 	float GetX() { return m_position.x; }
 	float GetY() { return m_position.y; }

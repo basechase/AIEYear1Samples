@@ -11,8 +11,13 @@ Critter::Critter()
 
 Critter::~Critter()
 {
+	if (m_isLoaded)
+	{
+
 	UnloadTexture(m_texture);
 	m_isLoaded = false;
+
+	}
 }
 
 void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
@@ -50,4 +55,12 @@ void Critter::Draw()
 		return;
 
 	DrawTexture(m_texture, m_position.x, m_position.y, WHITE);
+}
+
+void Critter::Reset()
+{
+	m_position = { 0, 0 };
+	m_velocity = { 0, 0 };
+	m_radius = 0;
+	m_isLoaded = false;
 }
