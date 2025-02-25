@@ -137,9 +137,11 @@ int main(int argc, char* argv[])
             float dist = Vector2Distance(critters[i].GetPosition(), destroyer.GetPosition());
             if (dist < critters[i].GetRadius() + destroyer.GetRadius())
             {
-                critters[i].Destroy();
+                Vector2 offScreen = { 1000,1000 };
                 // this would be the perfect time to put the critter into an object pool
-                objectPool.Disable(critters[i]);
+                critters[i].SetPosition(offScreen);
+                ///objectPool.Disable(critters[i]);
+               // std::cout << objectPool.CountInactive() << std::endl;
                 //
             }
         }
@@ -194,8 +196,9 @@ int main(int argc, char* argv[])
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
                     critters[i].Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
+                    //objectPool.Release(critters[i]);
+                    critters->Reset();
                     break;
-                    objectPool.Release(critters[i]);
                 }
             }
             nextSpawnPos = destroyer.GetPosition();

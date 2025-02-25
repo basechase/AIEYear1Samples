@@ -39,7 +39,7 @@ template<typename T>
 inline ObjectPool<T>::~ObjectPool()
 {
 	m_disabled.destroy();
-	m_disabled.destroy();
+	m_enabled.destroy();
 }
 
 
@@ -54,8 +54,9 @@ inline void ObjectPool<T>::Disable(T& element)
 template<typename T>
 inline void ObjectPool<T>::Release(T& element)
 {
+	
+	m_disabled.popFront();
 	m_enabled.pushFront(&element);
-	m_disabled.remove(&element);
 	
 }
 
@@ -63,15 +64,20 @@ template<typename T>
 inline void ObjectPool<T>::Clear()
 {
 	m_disabled.destroy();
-	m_disabled.destroy();
+	m_enabled.destroy();
 }
 
 template<typename T>
 inline T* ObjectPool<T>::Get()
 {
-	m_enabled.pushFront(m_disabled.first());
+	if (m_disabled.getLength() == 0) 
+		return nullptr; 
+
+	T* obj = m_disabled.first();
 	m_disabled.popFront();
-	return m_disabled.first();
+	m_enabled.pushFront(obj);
+
+	return obj;
 }
 
 template<typename T>
