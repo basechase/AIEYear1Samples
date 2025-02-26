@@ -64,3 +64,9 @@ void Critter::Reset()
 	m_radius = 0;
 	m_isLoaded = false;
 }
+
+Critter Critter::makeCritter()
+{
+	return Critter();
+}
+
