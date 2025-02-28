@@ -38,8 +38,8 @@ inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunctio
 	{
 		for (int i = 0; i < size; i++)
 		{
-			T* item = new T(createItemFunction());  // Allocate dynamically
-			m_disabled.pushFront(item);            // Store pointer
+			T* item = new T(createItemFunction()) ;  
+			m_disabled.pushFront(item);            
 		}
 	}
 }
