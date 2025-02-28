@@ -51,17 +51,17 @@ inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunctio
 template<typename T>
 inline void ObjectPool<T>::Disable(T& element)
 {
-
-	m_disabled.popBack();
-	m_enabled.popFront();
+	
+	
+	
 }
 
 template<typename T>
 inline void ObjectPool<T>::Release(T& element)
 {
 	
-	m_disabled.remove(&element);
-	
+	m_enabled.pushFront(&element);
+	m_disabled.popFront();
 	
 	
 }

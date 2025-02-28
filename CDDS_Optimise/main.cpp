@@ -89,6 +89,7 @@ int main(int argc, char* argv[])
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
 
+               std::cout << objectPool.CountActive() << std::endl;
         float delta = GetFrameTime();
 
         // update the destroyer
@@ -145,7 +146,7 @@ int main(int argc, char* argv[])
                 // this would be the perfect time to put the critter into an object pool
               //  critters[i]->SetPosition(offScreen);
                 objectPool.Disable(critters[i]);
-               std::cout << objectPool.CountInactive() << std::endl;
+               
                 
             }
         }
@@ -200,7 +201,7 @@ int main(int argc, char* argv[])
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
                     critters[i]->Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
-                    objectPool.Release(critters[i]);
+                   // objectPool.Disable(critters[i]);
                    // critters[i]->Reset();
                     break;
                 }
