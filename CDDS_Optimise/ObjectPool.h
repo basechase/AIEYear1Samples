@@ -25,24 +25,21 @@ private:
 };
 
 
-
 template<typename T>
 inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunction)
 {
 	if (size == 0)
 	{
-
-		//init lists with nothing in them
+		// Initialize lists as empty
 		m_disabled.pushFront(nullptr);
 		m_enabled.pushFront(nullptr);
 	}
-	else 
+	else
 	{
 		for (int i = 0; i < size; i++)
 		{
-			T item = createItemFunction();
-			//add to inactive list
-			m_disabled.pushFront(item);
+			T* item = new T(createItemFunction());  // Allocate dynamically
+			m_disabled.pushFront(item);            // Store pointer
 		}
 	}
 }

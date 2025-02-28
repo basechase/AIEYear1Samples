@@ -65,8 +65,8 @@ void Critter::Reset()
 	m_isLoaded = false;
 }
 
-Critter Critter::makeCritter()
+Critter* Critter::makeCritter()
 {
-	return Critter();
+	return new Critter();
 }
 
