@@ -9,8 +9,8 @@ public:
 	ObjectPool<T>(int size, CreateItemSignature createItemFunction);
 	~ObjectPool<T>() = default;
 	
-	void Disable(T* element);
-	void Release(T* element);
+	void Disable(T& element);
+	void Release(T& element);
 	void Clear();
 	T* Get();
 
@@ -30,7 +30,7 @@ inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunctio
 {
 	if (size == 0)
 	{
-		// Initialize lists as empty
+		//initialize lists as empty
 		m_disabled.pushFront(nullptr);
 		m_enabled.pushFront(nullptr);
 	}
@@ -49,17 +49,19 @@ inline ObjectPool<T>::ObjectPool(int size, CreateItemSignature createItemFunctio
 
 
 template<typename T>
-inline void ObjectPool<T>::Disable(T* element)
+inline void ObjectPool<T>::Disable(T& element)
 {
-	m_disabled.pushFront(element);
-	m_enabled.remove(element);
+
+	m_disabled.popBack();
+	m_enabled.popFront();
 }
 
 template<typename T>
-inline void ObjectPool<T>::Release(T* element)
+inline void ObjectPool<T>::Release(T& element)
 {
 	
-	m_disabled.pushFront(element);
+	m_disabled.remove(&element);
+	
 	
 	
 }
