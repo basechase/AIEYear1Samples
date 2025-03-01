@@ -143,7 +143,7 @@ int main(int argc, char* argv[])
                 Vector2 offScreen = { 1000,1000 };
                 
                 // this would be the perfect time to put the critter into an object pool
-                critters[i]->Destroy();
+              //  critters[i]->Destroy();
                critters[i]->SetPosition(offScreen);
                 objectPool.Disable(critters[i]);
                 std::cout << objectPool.CountActive() << std::endl;
