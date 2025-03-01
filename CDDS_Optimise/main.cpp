@@ -146,8 +146,8 @@ int main(int argc, char* argv[])
               //  critters[i]->Destroy();
                critters[i]->SetPosition(offScreen);
                 objectPool.Disable(critters[i]);
-                std::cout << objectPool.CountActive() << std::endl;
-                std::cout << objectPool.CountInactive() << std::endl;
+              //  std::cout << objectPool.CountActive() << std::endl;
+              //  std::cout << objectPool.CountInactive() << std::endl;
                 
                 
             }
