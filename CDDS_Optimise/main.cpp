@@ -41,9 +41,9 @@ int main(int argc, char* argv[])
 
     srand(time(NULL));
     
-    Critter* critters[100];
+    Critter* critters[50];
    
-    ObjectPool<Critter*> objectPool = ObjectPool<Critter*>(100, []() {return new Critter; });
+    ObjectPool<Critter*> objectPool = ObjectPool<Critter*>(50, []() {return new Critter; });
   
     
     // create some critters
@@ -64,8 +64,8 @@ int main(int argc, char* argv[])
         
         
         */
-        objectPool.Release(critters[i]);
         critters[i] = new Critter();
+       objectPool.Get();
         critters[i]->Init(
             { (float)(5+rand() % (screenWidth-10)), (float)(5+(rand() % screenHeight-10)) },
             velocity,
@@ -88,8 +88,7 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-
-               std::cout << objectPool.CountActive() << std::endl;
+        
         float delta = GetFrameTime();
 
         // update the destroyer
@@ -141,12 +140,15 @@ int main(int argc, char* argv[])
             float dist = Vector2Distance(critters[i]->GetPosition(), destroyer.GetPosition());
             if (dist < critters[i]->GetRadius() + destroyer.GetRadius())
             {
-               // Vector2 offScreen = { 1000,1000 };
+                Vector2 offScreen = { 1000,1000 };
                 
                 // this would be the perfect time to put the critter into an object pool
-              //  critters[i]->SetPosition(offScreen);
+                critters[i]->Destroy();
+               critters[i]->SetPosition(offScreen);
                 objectPool.Disable(critters[i]);
-               
+                std::cout << objectPool.CountActive() << std::endl;
+                std::cout << objectPool.CountInactive() << std::endl;
+                
                 
             }
         }
@@ -201,8 +203,8 @@ int main(int argc, char* argv[])
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
                     critters[i]->Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
-                   // objectPool.Disable(critters[i]);
-                   // critters[i]->Reset();
+                    objectPool.Release(critters[i]);
+                   critters[i]->Reset();
                     break;
                 }
             }

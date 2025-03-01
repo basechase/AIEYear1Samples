@@ -19,6 +19,7 @@ Critter::~Critter()
 	
 }
 
+
 void Critter::Init(Vector2 position, Vector2 velocity, float radius, const char* texture)
 {
 	m_position = position;

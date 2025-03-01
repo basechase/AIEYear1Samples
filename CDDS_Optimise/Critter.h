@@ -24,7 +24,7 @@ public:
 	void Update(float dt);
 	void Draw();
 	void Reset();
-	
+
 	Critter* makeCritter();
 	float GetX() { return m_position.x; }
 	float GetY() { return m_position.y; }
