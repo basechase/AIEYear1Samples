@@ -143,11 +143,11 @@ int main(int argc, char* argv[])
                 Vector2 offScreen = { 1000,1000 };
                 
                 // this would be the perfect time to put the critter into an object pool
-              //  critters[i]->Destroy();
+               critters[i]->Destroy();
                critters[i]->SetPosition(offScreen);
                 objectPool.Disable(critters[i]);
-              //  std::cout << objectPool.CountActive() << std::endl;
-              //  std::cout << objectPool.CountInactive() << std::endl;
+                std::cout << objectPool.CountActive() << std::endl;
+                std::cout << objectPool.CountInactive() << std::endl;
                 
                 
             }
@@ -203,7 +203,7 @@ int main(int argc, char* argv[])
                     pos = Vector2Add(pos, Vector2Scale(normal, -50));
                     // its pretty ineficient to keep reloading textures. ...if only there was something else we could do
                     critters[i]->Init(pos, Vector2Scale(normal, -MAX_VELOCITY), 12, "res/10.png");
-                    objectPool.Release(critters[i]);
+                    objectPool.Get();
                    critters[i]->Reset();
                     break;
                 }
